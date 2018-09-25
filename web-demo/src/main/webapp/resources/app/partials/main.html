@@ -1,0 +1,63 @@
+<main name="resource">
+  <div>
+    <div style="height:60px;width:100%;background-color: #000;" >
+      <div style="height:100%;width:20%;background-color: #000;float:left;"><!-- box-shadow: inset 0px 2px 0px 10px #000; -->
+        <div style="text-align: center;margin-top: 15px;">
+          <span ng-click="$ctrl.toHa()" style="color: white;font-size: 20px;">哈尔滨</span>
+        </div>
+      </div>
+
+      <div style="height:100%;width:20%;background-color: #000;float:left;"><!-- box-shadow: inset 0px 2px 0px 10px #000; -->
+        <div style="text-align: center;margin-top: 15px;">
+          <span ng-click="$ctrl.toHang()" style="color: white;font-size: 20px;">杭州</span>
+        </div>
+      </div>
+
+      <div style="height:100%;width:20%;background-color: #000;float:left;"><!-- box-shadow: inset 0px 2px 0px 10px #000; -->
+        <div style="text-align: center;margin-top: 15px;">
+          <span ng-click="$ctrl.toShang()" style="color: white;font-size: 20px;">上海</span>
+        </div>
+      </div>
+
+      <div style="height:100%;width:10%;background-color: #000;float:left;"><!-- box-shadow: inset 0px 2px 0px 10px #000; -->
+        <div style="text-align: center;margin-top: 15px;">
+          <span ng-click="$ctrl.toKing()" style="color: white;font-size: 20px;">king</span>
+        </div>
+      </div>
+
+      <div style="height:100%;width:10%;background-color: #000;float:left;vertical-align: middle; text-align: center; display: table-cell;">
+        <a href="/web-demo/login?logout" style="color: #ffffff;    margin-top: 20px; padding-top: 20px; vertical-align: middle;
+    text-align: center; display: table-cell;">退出</a>
+      </div>
+
+      <div style="height:100%;width:10%;background-color: #000;float:left;">
+        <img src="/web-demo/resources/image/green.jpg" style="    width: 90px;">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 左侧菜单 -->
+  <!-- <div >
+    <nav style="font-size: 18px;">
+      <ul>
+          <li  >
+              <i class="ocl"></i>
+              <a class="node ng-binding">区域</a>
+              <ul>
+                  <li style="">class="active"
+                      <a >佳木斯</a>
+                  </li>
+                  <li >
+                      <a class="node">齐齐哈尔</a>
+                  </li>
+              </ul>
+          </li>
+
+        </ul>
+    </nav>
+  </div> -->
+
+
+<ng-outlet></ng-outlet>
+</main>

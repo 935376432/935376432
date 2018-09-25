@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry path="bin" kind="output"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.11.RELEASE/148a8463bd0746a4ee05c56e2c414b3c5812fcaf/spring-context-4.3.11.RELEASE-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.11.RELEASE/3efec2d7c7469d49108a2b21c3f15831f7297569/spring-context-4.3.11.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1-b07/e227ff9d3e8928ca6750073d13616469d6b03b38/javax.servlet-api-3.1-b07-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1-b07/7a0029a0fdef36fa8caca2fb0f0a5b2377f6a0d5/javax.servlet-api-3.1-b07.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.5/65ffa6d644792e8b09cf6479d5c01ed95bb153a0/slf4j-log4j12-1.7.5-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.5/6edffc576ce104ec769d954618764f39f0f0f10d/slf4j-log4j12-1.7.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-jdk14/1.7.5/f0c40bff1c02d8d1c3ef73453aebd3a7e3d6f41b/slf4j-jdk14-1.7.5-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-jdk14/1.7.5/33cf4abac351aa45dd130d31a1e7e33fbbba4762/slf4j-jdk14-1.7.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/6dd4eea7da289d149f3b3a4e57f956c0bbaafb23/mysql-connector-java-5.1.24-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/a7d599d73b86a928303909b9be7573a4ea0ed28e/mysql-connector-java-5.1.24.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.11.RELEASE/1c0868ac3c06872f1fa7d97ebf05ea0e119db67d/spring-aop-4.3.11.RELEASE-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.11.RELEASE/461d0bb58f1de30203d9331adf4b51de9554de5a/spring-aop-4.3.11.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.11.RELEASE/430d9b461e5bc167ffe8f098e85e0d7284b30d78/spring-beans-4.3.11.RELEASE-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.11.RELEASE/591cc35fd39292adae13f01aa13e978d0bb11936/spring-beans-4.3.11.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.11.RELEASE/f2c74d02505cc3bbed690261a409d8f5f5a386fc/spring-core-4.3.11.RELEASE-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.11.RELEASE/eb30ed093f628279d3aead068fd478fa343f1dad/spring-core-4.3.11.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.11.RELEASE/b97afd9e9960c68fc5d2853e757208151a1d7ba6/spring-expression-4.3.11.RELEASE-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.11.RELEASE/fca662a2fccdad90ec22b2aaecb021047dcbe249/spring-expression-4.3.11.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.5/654135274d4c27132ea208a4ec07f344bdb83bcb/slf4j-api-1.7.5-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.5/6b262da268f8ad9eff941b25503a9198f0a0ac93/slf4j-api-1.7.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/677abe279b68c5e7490d6d50c6951376238d7d3e/log4j-1.2.17-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar" kind="lib" path="C:/Users/congzhe/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+</classpath>

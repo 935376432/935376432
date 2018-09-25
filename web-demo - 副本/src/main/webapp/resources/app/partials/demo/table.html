@@ -1,0 +1,153 @@
+<div class="scrollable-qztable-wrap">
+    <div class="scrollable-qztable">
+        <span class="empty_table" ng-hide="$ctrl.data && $ctrl.data.length > 0" style="float: left;">{{$L("table.no.datas")}}</span>
+        <table class="qz" id="{{$ctrl.id}}" ng-class="$ctrl.class" ng-show="$ctrl.fields && $ctrl.data && $ctrl.data.length > 0">
+            <thead ng-if="$ctrl.titleShow != false">
+                <tr>
+                    <td style="width: 45px;" ng-show="$ctrl.checkbox != 'disabled'&& $ctrl.checkbox != 'notshow' && $ctrl.checkbox != 'showpage'">
+                        #
+                    </td>
+                    <td ng-repeat="field in $ctrl.fields"
+                        title="{{field.title}}"
+                        ng-if="field.show != false"
+                        ng-style="$ctrl.toStyle(field.style, field.headerStyle)">
+                        <span ng-class="{'orderable': field.orderable, 'multiline': field.multiline, 'asc': field.orderable && $ctrl.orderable.field == field.field && $ctrl.orderable.type == 'asc', 'desc': field.orderable && $ctrl.orderable.field == field.field && $ctrl.orderable.type == 'desc'}"
+                                class="field_title"
+                                ng-click="field.orderable && $ctrl.switch_orderable(field.field);">
+                            <span>{{field.title}}</span>
+                        </span>
+                    </td>
+                    <td ng-show="$ctrl.haveCtrlButton()">
+                        {{$L("table.oper")}}
+                    </td>
+                    <td class="col-ctrl" ng-if="$ctrl.fieldCtrl != 'disabled'">
+                        <div class="dropdown gridster"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                          <a class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.toggleColPanel($event)">
+                          </a>
+                          <ul class="dropdown-menu"
+                              ng-click="$event.stopPropagation();"
+                              dnd-list="$ctrl.fields">
+                            <li ng-repeat="field in $ctrl.fields"
+                                dnd-moved="$ctrl.fields.splice($index, 1);($ctrl.fieldChanged && $ctrl.fieldChanged($ctrl.fields));"
+                                dnd-draggable="field">
+                                <qz-checkbox ng-checked="field.show != false" ng-click="field.show == false ? field.show = true : field.show = false;($ctrl.fieldChanged && $ctrl.fieldChanged($ctrl.fields));">
+                                    {{field.title}}
+                                </qz-checkbox>
+                            </li>
+                          </ul>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody ng-transclude="tbody">
+                <tr ng-repeat="item in $ctrl.data" class="{{$ctrl.dynamicClass && $ctrl.dynamicClass(item, $index)}}">
+                    <td style="width: 45px;" ng-show="$ctrl.dataone != 'true' &&$ctrl.checkbox != 'disabled'&& $ctrl.checkbox != 'notshow'&& $ctrl.checkbox != 'showpage'">
+                        <qz-checkbox id="select_{{item.id}}" ng-checked="$ctrl.is_checked(item)"
+                                     ng-click="$ctrl.toggle_selected(item)">
+                            {{$ctrl.checkbox == "NoTitle" ? "" : item[$ctrl.checkbox || "id"]}}
+                        </qz-checkbox>{{$ctrl.dataOne}}
+                    </td>
+                    <td style="width: 45px;" ng-show="$ctrl.dataone == 'true' && $ctrl.checkbox != 'disabled'&& $ctrl.checkbox != 'notshow'&& $ctrl.checkbox != 'showpage'">
+                        <qz-checkbox id="select_{{item.id}}" ng-checked="$ctrl.is_checked(item)"
+                                     ng-click="$ctrl.toggle_selectedOne(item)">
+                            {{$ctrl.checkbox == "NoTitle" ? "" : item[$ctrl.checkbox || "id"]}}
+                        </qz-checkbox>{{$ctrl.dataOne}}
+                    </td>
+                    <td ng-repeat="field in $ctrl.fields"
+                        template-data="item"
+                        template-params="field.templateParams"
+                        template-render="field"
+                        class="{{field.class}}"
+                        ng-style="$ctrl.toStyle(field.style, field.bodyStyle)"
+                        ng-if="field.show != false">
+                    </td>
+                    <td class="ctrl-buttons" ng-show="$ctrl.haveCtrlButton()">
+                        <table>
+                            <tr>
+                                <td ng-repeat="btn in $ctrl.buttons.ctrlButtons"
+                                    ng-if="!btn.perpare || btn.perpare(item, $parent.$index)">
+                                    <a class="table_btn {{btn.class}}"
+                                        ng-click="btn.onClick(item, $parent.$parent.$index, $event)">
+                                        {{btn.name}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="dropdown more_buttons" ng-show="$ctrl.haveMoreButton(item, $parent.$index)">
+                                      <a class="table_btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.toggleMoreButtons($event)">
+                                        {{$L("table.more")}}
+                                        <span class="caret"></span>
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                        <li ng-repeat="button in $ctrl.buttons.moreButtons"
+                                            ng-if="!button.perpare || button.perpare(item, $parent.$index)">
+                                            <a ng-click="button.onClick(item, $parent.$parent.$index, $event)">
+                                                {{button.name}}
+                                            </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td ng-if="$ctrl.fieldCtrl != 'disabled'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <table class="table-footer" ng-show="$ctrl.data && $ctrl.data.length > 0">
+        <tfoot>
+            <tr>
+                <td colspan="{{$ctrl.getFooterCtrlCol()}}">
+                    <qz-checkbox id="select_all" ng-checked="$ctrl.is_checked_all($ctrl.data) && $ctrl.data && $ctrl.data.length > 0"
+                                                 ng-show="$ctrl.dataone != 'true' && $ctrl.checkbox != 'disabled' && $ctrl.checkbox != 'notshow'&& $ctrl.checkbox !='showpage'"
+                                                 ng-click="$ctrl.toggle_checked_all($ctrl.data)">
+                        {{$L("table.select.all")}}
+                    </qz-checkbox>
+                    <span class="selected_count" ng-show="$ctrl.checkbox != 'disabled' && $ctrl.checkbox != 'notshow' && $ctrl.checkbox !='showpage'" >
+                    {{$ctrl.selected_count()}}
+                    /
+                    {{$ctrl.data.total_elements}}
+                    </span>
+                    <span class="selected_count" ng-show="$ctrl.checkbox == 'disabled' || $ctrl.checkbox =='showpage'">
+                        {{$L("table.select.selected")}}{{$ctrl.data.total_elements || $ctrl.data.length}}
+                    </span>
+                    <a class="footer-button" ng-repeat="btn in $ctrl.buttons.footerButtons"
+                        ng-click="btn.onClick($ctrl)">
+                        {{btn.name}}
+                    </a>
+
+                    <div class="pagination" ng-show="$ctrl.data.total_pages && $ctrl.pagination != 'disabled'">
+                        <button class="prev"
+                                type="button"
+                                ng-disabled="$ctrl.data.first"
+                                ng-click="$ctrl.refresh({page: $ctrl.data.current_page - 1});">prev</button>
+                        <input type="number" class="current" ng-model="$ctrl.current_page_mirror"
+                                                            ng-disabled="$ctrl.esType == 'true' && ($ctrl.data.total_elements >= 10000)"
+                                                            ng-enter="$ctrl.jumpTo()"/>
+                        <span> / {{$ctrl.data.total_pages}}</span>
+                        <button class="next"
+                                type="button"
+                                ng-disabled="$ctrl.data.last || (($ctrl.data.current_page + 1) * $ctrl.numberOfPage >= 10000)"
+                                ng-click="$ctrl.refresh({page: $ctrl.data.current_page + 1});">next</button>
+                    </div>
+                    <div class="pagination-conf" ng-if="$ctrl.numberOfPage"><!--  ng-show="($ctrl.checkbox != 'disabled' && $ctrl.checkbox != 'notshow')||($ctrl.checkbox == 'showpage')" -->
+                        <span>{{$L("table.page.size")}}</span>
+                        <div class="dropup number-of-page">
+                          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{$ctrl.numberOfPage}}
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li ng-repeat="item in [10, 20, 50, 100]">
+                                <a ng-click="$ctrl.numberOfPage = item;$ctrl.refresh({page: 0,size : item});">{{item}}</a>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                    <button class="table-refresh-div" ng-if="$ctrl.refresh" ng-click="$ctrl.refresh({page: $ctrl.data.current_page});$ctrl.refreshBtnClick && $ctrl.refreshBtnClick();"></button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

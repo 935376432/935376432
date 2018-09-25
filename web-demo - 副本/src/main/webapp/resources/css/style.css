@@ -1,0 +1,135 @@
+.container {
+    margin-top: 10px;
+}
+
+.file-dropzone {
+    border: 1px dashed #ddd;
+}
+
+.file-dropzone.drag-over {
+    outline: LightGreen solid 4px;
+}
+
+ul {
+  list-style: none;
+}
+
+.slider {
+  float: left;
+  height: 100%;
+  width: 394px;
+  overflow-y: auto;
+}
+
+.slider > ul {
+  overflow: hidden;
+  padding-top: 13px;
+}
+
+.slider > ul > li {
+  width: 127px;
+  height: 145px;
+  float: left;
+  background-repeat: no-repeat;
+  background-position: center 27px;
+  background-size: 64px auto;
+  cursor: pointer;
+  background-color: aliceblue;
+  margin-left: 10px;
+}
+
+.node{
+  color: #000;
+  font-size: 18px;
+  border: 1px solid #fff;
+}
+
+
+
+/*******资产页面表格开始********/
+.asset-table tr:nth-child(odd){
+    background-color: #f2f6f7;
+}
+.asset-table tr:nth-child(even){
+    background-color: #EFF1F5;
+}
+.asset-table thead tr :nth-child(even){
+    background-color: #D2D7E1;
+}
+.asset-table thead tr :nth-child(odd){
+    background-color: #E0E3EA;
+}
+
+.asset-table thead tr th{
+    height: 60px;
+    width: 250px;
+    /* background-color: #E0E3EA; */
+    border: 1px solid white;
+    vertical-align: middle;
+    text-align: center;
+    color: black;
+    /* font-weight: bold */
+    font-size: 14px;
+}
+.asset-table thead tr td{
+    width: 250px;
+    height: 60px 60px !important;
+    vertical-align: middle;
+}
+.asset-table tbody tr td{
+    height: 60px;
+    width: 250px;
+    border: 1px solid white;
+    vertical-align: middle;
+    text-align: center;
+    color:#264058;
+    font-size: 14px;
+}
+.asset-table tbody tr th{
+    height: 60px;
+    width: 250px;
+    background-color: #E0E3EA;
+    border: 1px solid white;
+    vertical-align: middle;
+    text-align: center;
+    color:#778699;
+    /* font-weight: bold; */
+}
+/** 第二列样式  */
+.asset-table tbody td:nth-of-type(1){
+    background-color: #E0E3EA;
+    /* font-weight: bold; */
+}
+.th-500 {
+    width: 200px !important;
+    height: 60px !important;
+}
+.assethighlight{
+    color: #02b1ef !important;
+    /* font-weight: bold; */
+    cursor: pointer;
+}
+.assetfont14{
+  font-size: 14px;
+}
+/** 滚动条样式  */
+#asset-tablediv::-webkit-scrollbar{
+    width:10px;
+    height:10px;
+}
+#asset-tablediv::-webkit-scrollbar-track{
+    background: #f6f6f6;
+    border-radius:2px;
+}
+#asset-tablediv::-webkit-scrollbar-thumb{
+    background: #aaa;
+    border-radius:2px;
+}
+#asset-tablediv::-webkit-scrollbar-thumb:hover{
+    background: #747474;
+}
+#asset-tablediv::-webkit-scrollbar-corner{
+    background: #f6f6f6;
+
+}
+/*******资产页面表格结束********/

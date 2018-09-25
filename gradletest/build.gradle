@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+version = '1.0.0'
+repositories {
+    mavenCentral url: 'http://repos.shterm.com/nexus/content/repositories/central/'
+}
+dependencies {
+    compile 'org.springframework:spring-context:4.+',
+            'org.springframework:spring-orm:4.+',
+            'org.springframework.data:spring-data-jpa:1.+',
+            'org.hibernate:hibernate-entitymanager:4.+'
+    compile ('org.hibernate:hibernate-core:4.+') {
+        exclude group: 'xml-apis', module: 'xml-apis' // Java 7/8 already includes xml-apis
+    }
+    runtime 'org.apache.logging.log4j:log4j-core:2.+',
+            'org.apache.logging.log4j:log4j-jcl:2.+',
+            'org.apache.logging.log4j:log4j-slf4j-impl:2.+',
+            'org.liquibase:liquibase-core:3.+',
+            'com.h2database:h2:1.+'
+    testCompile 'junit:junit:4+',
+                'org.springframework:spring-test:4.+'
+}

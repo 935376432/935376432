@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.6"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.6
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.6.xsd">
+
+    <changeSet id="1" author="shterm">
+        <sql><![CDATA[
+create table tbl_user (
+    id bigserial not null primary key,
+    login_name varchar(64),
+    password varchar(64),
+    name varchar(128)
+);
+
+insert into tbl_user (login_name, password, name)
+    values ('admin', 'admin', 'Administrator');
+insert into tbl_user (login_name, password, name)
+    values ('viewer', 'viewer', 'Read-only User');
+        ]]></sql>
+    </changeSet>
+
+
+</databaseChangeLog>

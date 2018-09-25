@@ -1,0 +1,45 @@
+.container {
+    margin-top: 10px;
+}
+
+.file-dropzone {
+    border: 1px dashed #ddd;
+}
+
+.file-dropzone.drag-over {
+    outline: LightGreen solid 4px;
+}
+
+ul {
+  list-style: none;
+}
+
+.slider {
+  float: left;
+  height: 100%;
+  width: 394px;
+  overflow-y: auto;
+}
+
+.slider > ul {
+  overflow: hidden;
+  padding-top: 13px;
+}
+
+.slider > ul > li {
+  width: 127px;
+  height: 145px;
+  float: left;
+  background-repeat: no-repeat;
+  background-position: center 27px;
+  background-size: 64px auto;
+  cursor: pointer;
+  background-color: aliceblue;
+  margin-left: 10px;
+}
+
+.node{
+  color: #000;
+  font-size: 18px;
+  border: 1px solid #fff;
+}

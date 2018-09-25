@@ -1,0 +1,147 @@
+<!-- <html>
+<head>
+     <title>表格的冻结列实现</title>
+</head>
+<body>
+如果冻结列不好使，给tableDiv也设置一个position:relative;
+ <div id="tableDiv" style="width:500px;overflow-x:auto;">
+<table border="1" class="test-table" style="width:720px;">
+    <thead>
+        <tr>
+          <th>科目</th>
+          <th>语文</th>
+          <th>数学</th>
+          <th>姓名</th>
+          <th>语文</th>
+          <th>数学</th>
+          <th>姓名</th>
+          <th>语文</th>
+          <th>数学</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>张三</th>
+            <td>60</td>
+            <td>70</td>
+            <td>张三</td>
+            <td>60</td>
+            <td>70</td>
+            <td>张三</td>
+            <td>60</td>
+            <td>70</td>
+        </tr>
+        <tr>
+            <th>李四</th>
+            <td>80</td>
+            <td>90</td>
+            <td>李四</td>
+            <td>80</td>
+            <td>90</td>
+            <td>李四</td>
+            <td>80</td>
+            <td>90</td>
+        </tr>
+    </tbody>
+</table>
+
+ </div>
+ <script>
+$("#tableDiv").scroll(function(){//给table外面的div滚动事件绑定一个函数
+var left=$("#tableDiv").scrollLeft();//获取滚动的距离
+var trs=$("#tableDiv table tr");//获取表格的所有tr
+   trs.each(function(i){//对每一个tr（每一行）进行处理
+//获得每一行下面的所有的td，然后选中下标为0的，即第一列，设置position为相对定位
+//相对于父div左边的距离为滑动的距离，然后设置个背景颜色，覆盖住后面几列数据滑动到第一列下面的情况
+//如果有必要也可以设置一个z-index属性
+$(this).children().eq(0).css({"position":"relative","top":"0px","left":left,"background-color": "#E0E3EA"});
+});
+});
+ </script>
+<style>
+.test-table tr:nth-child(odd){
+    background-color: #FFFFFF;
+}
+.test-table tr:nth-child(even){
+    background-color: #EFF1F5;
+}
+
+.test-table thead tr :nth-child(even){
+    background-color: #D2D7E1;
+}
+.test-table thead tr :nth-child(odd){
+    background-color: #E0E3EA;
+}
+
+.test-table thead tr th{
+    height: 60px;
+    width: 150px;
+    /* background-color: #E0E3EA; */
+    border: 1px solid black;
+}
+
+.test-table tbody tr td{
+    height: 60px;
+    width: 150px;
+    border: 1px solid black;
+}
+.test-table tbody tr th{
+    height: 60px;
+    width: 150px;
+    background-color: #E0E3EA;
+    border: 1px solid black;
+}
+</style>
+</body>
+</html> -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用div+css模拟表格对角线</title>
+<style type="text/css">
+    #scroll-2{
+        width:200px;
+        height:200px;
+        overflow:auto;
+        margin-bottom: 20px;
+    }
+    #scroll-2 div{
+        width:400px;
+        height:400px;
+    }
+    #scroll-2::-webkit-scrollbar{
+        width:4px;
+        height:4px;
+    }
+    #scroll-2::-webkit-scrollbar-track{
+        background: #f6f6f6;
+        border-radius:2px;
+    }
+    #scroll-2::-webkit-scrollbar-thumb{
+        background: #aaa;
+        border-radius:2px;
+    }
+    #scroll-2::-webkit-scrollbar-thumb:hover{
+        background: #747474;
+    }
+    #scroll-2::-webkit-scrollbar-corner{
+        background: #f6f6f6;
+
+    }
+</style>
+</head>
+<body>
+
+<div id="scroll-2">
+    <div >
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ex quia ab aliquid facere architecto culpa dolorum fugit corrupti harum accusantium quisquam inventore et magnam itaque minima hic! Impedit error.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum incidunt quia ipsam totam tenetur maxime repellendus possimus debitis molestiae velit vel fugiat ullam excepturi est quisquam quo fugit culpa amet.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur facilis ipsam iste repellat sint numquam explicabo voluptatum voluptate corporis fugit adipisci qui exercitationem corrupti debitis tempore omnis maxime at quidem!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto voluptatem dolores ab dolorem est itaque ut sit deserunt qui laudantium eaque vitae perspiciatis amet quasi unde inventore dolor quis. Natus!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam quia doloremque blanditiis quas unde nostrum a voluptatibus quam perspiciatis non quaerat enim neque quos rerum quo dolor expedita error deserunt!</p>
+        </div>
+</div>
+</body>
+</html>

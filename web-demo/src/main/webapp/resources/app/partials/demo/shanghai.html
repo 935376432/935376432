@@ -1,0 +1,89 @@
+<h2>上海</h2>
+
+<div id="asset-tablediv" style="overflow-x:auto;" ng-style="{{$ctrl.widthStyle}}">
+    <table border="1" class="asset-table" id="table-asset" style="width:600px" >
+      <thead>
+        <tr>
+          <th style="background-color: white;border: none;width:30px  !important;height:60px  !important;" ng-show="false"></th>
+          <!-- <th class="th-500"><img src="resources/image/intersect.png" width="100%" height="100%" style="margin-bottom: -10px;"></th> -->
+          <th class="th-500" ng-repeat="field in $ctrl.fields" title="{{field.desc == null ? field.title : field.desc}}"
+            ng-if="field.show != false" ng-style="$ctrl.toStyle(field.style, field.headerStyle)">
+            <!-- {{ $index != 0 ? field.title : null}} -->
+            {{field.title}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in $ctrl.data.content">
+          <th style="background-color: white;border: none;width:30px  !important;text-align: start;" ng-show="false">
+            <span></span>
+          </th>
+          <td ng-repeat="field in $ctrl.fields"
+              template-data="item"
+              template-params="field.templateParams"
+              template-render-asset="field"
+              ng-click="$ctrl.openeditTable(field,item);$ctrl.toOperSystem(field,item)"
+              class="{{field.class}}"
+              ng-class="{assethighlight: true}"
+              ng-style="$ctrl.toStyle(field.style, field.bodyStyle)"
+              ng-if="field.show != false">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!-- 表格底部多选框及分页显示 -->
+<table class="table-footer" ng-if="false">
+  <tfoot>
+    <tr>
+       <td>
+          <spn class="selected_count" style="margin-top: 0px;margin-left: -13px;">
+            <span>aa</span>
+          </spn>
+          <span class="selected_count" style="margin-left:0px;magin-right:0px" >
+          {{$ctrl.selected_Selectcount()}}
+          /
+          {{$ctrl.data.total_elements}}
+          </span>
+          <a class="footer-button" ng-repeat="btn in $ctrl.buttons.footerButtons" style="margin-left:10px" ng-if="!btn.perpare || btn.perpare(item, $parent.$index)" ng-click="btn.onClick($ctrl)">
+                    {{btn.name}}
+                </a>
+          <!-- <span class="selected_count" style="color: black">
+                                          批量编辑
+          </span>
+          <span class="selected_count" style="color: black">
+                                          导出全部
+          </span> -->
+          <div class="pagination" >
+            <button class="prev"
+                    type="button"
+                    ng-disabled="$ctrl.data.first"
+                    ng-click="$ctrl.upPage()">prev</button>
+            <input type="number" class="current" ng-model="$ctrl.current_page_mirror"
+                                                ng-disabled="$ctrl.esType == 'true' && ($ctrl.data.total_elements >= 10000)"
+                                                ng-enter="$ctrl.jumpTo()"/>
+            <span> / {{$ctrl.data.total_pages}}</span>
+            <button class="next"
+                    type="button"
+                    ng-disabled="$ctrl.data.last || ($ctrl.esType == 'true' && (($ctrl.data.current_page + 1) * $ctrl.numberOfPage >= 10000))"
+                    ng-click="$ctrl.downPage()">next</button>
+        </div>
+        <div class="pagination-conf" ng-if="$ctrl.numberOfPage" style="margin-right:10px">
+          <span>{{$L("table.page.size")}}</span>
+          <div class="dropup number-of-page">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{$ctrl.numberOfPage}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="item in [5, 8, 10, 20, 50, 100]">
+                  <a ng-click="$ctrl.pageSizeChange(item);">{{item}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button class="table-refresh-div" ng-click="$ctrl.refresh({page: $ctrl.data.current_page});$ctrl.refreshBtnClick && $ctrl.refreshBtnClick();"></button>
+       </td>
+    </tr>
+  </tfoot>
+</table>

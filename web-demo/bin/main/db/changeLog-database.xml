@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+            http://www.liquibase.org/xml/ns/dbchangelog-ext
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="jiji">
+        <sql><![CDATA[
+
+create sequence tbl_user_id_seq start 101;
+create table tbl_user (
+    id bigserial not null primary key,
+    login_name varchar(64),
+    password varchar(64),
+    name varchar(128)
+);
+
+insert into tbl_user (id, login_name, password, name) values (1, 'admin', 'admin', 'Administrator');
+insert into tbl_user (id, login_name, password, name) values (2, 'viewer', 'viewer', 'Read-only User');
+        ]]></sql>
+    </changeSet>
+
+
+</databaseChangeLog>

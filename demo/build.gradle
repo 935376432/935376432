@@ -1,0 +1,82 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+version = '1.0.0'
+
+repositories {
+    mavenCentral url: 'http://repos.shterm.com/nexus/content/repositories/central/'
+    //jcenter();
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:4.+',
+            'org.springframework:spring-webmvc:4.+',
+            'org.springframework.security:spring-security-config:4.+',
+            'org.springframework.security:spring-security-web:4.+',
+            'org.springframework.security:spring-security-ldap:4.+',
+            'org.postgresql:postgresql:42.+',
+            'com.sun.mail:javax.mail:1.+',
+            'javax.annotation:javax.annotation-api:1.+',
+            'org.springframework.data:spring-data-jpa:1.+',
+            'org.hibernate:hibernate-validator:5.+',
+            'org.hibernate:hibernate-entitymanager:4.+',
+            'commons-io:commons-io:2.5',
+            'commons-net:commons-net:3.6',
+            'org.liquibase:liquibase-core:3.+',
+            'org.apache.commons:commons-dbcp2:2.+'
+
+    runtime 'org.slf4j:slf4j-api:1.+',
+            'org.apache.taglibs:taglibs-standard-spec:1.+',
+            'org.apache.taglibs:taglibs-standard-impl:1.+',
+            'org.webjars:webjars-locator:0.+',
+            'org.webjars:jquery:2.+',
+            'org.webjars:bootstrap:3.+',
+            'org.webjars:dropzone:4.+',
+            'com.h2database:h2:1.+',
+            'org.liquibase:liquibase-core:3.+'
+
+    runtime ('org.webjars.bower:bootstrap3-dialog:1.+') {
+        exclude group: 'org.webjars.bower', module: 'jquery'
+        exclude group: 'org.webjars.bower', module: 'bootstrap'
+    }
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.1+'
+
+    testCompile 'org.mockito:mockito-core:1.+',
+                'junit:junit:4+',
+                'org.springframework:spring-test:4.+'
+}
+
+
+eclipse {
+    project {
+        natures 'org.eclipse.wst.jsdt.core.jsNature'
+    }
+    classpath {
+        defaultOutputDir = file('build/bin')
+        file {
+            whenMerged { classpath ->
+                def container;
+                classpath.entries.each {
+                    if (it.path == 'org.eclipse.jst.j2ee.internal.web.container') {
+                        container = it;
+                    }
+                }
+                if (container) {
+                    classpath.entries.remove(container);
+                }
+            }
+        }
+    }
+    wtp {
+        facet {
+            facet name: 'jst.java', version: '1.8'
+            facet name: 'jst.web', version: '3.1'
+            facet name: 'wst.jsdt.web', version: '1.0'
+        }
+        /*component {
+            contextPath = 'index'
+        }*/
+    }
+}

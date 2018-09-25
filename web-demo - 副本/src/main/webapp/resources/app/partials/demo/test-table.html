@@ -1,0 +1,364 @@
+<section class="">
+  <!-- 搜索栏 -->
+  <div class="">
+    <div class="filter" ng-if="false">
+      <div class="item">
+        <button class="more_filters btn-default"
+          ng-click="$ctrl.filters_view_is_active = !$ctrl.filters_view_is_active">
+          {{$L('button.more')}}
+        </button>
+        <div class="filters_view_bg"
+          ng-show="$ctrl.filters_view_is_active"
+          ng-click="$ctrl.filters_view_is_active = false;">
+        </div>
+        <div class="filters_view form-horizontal" style="margin-left: 20px;" ng-show="$ctrl.filters_view_is_active">
+          <div style="max-height: 300px;overflow-y: auto; overflow-x: hidden;">
+            <!-- 过滤项展开 -->
+            <div class="form-group" ng-repeat="fieldFilter in $ctrl.fieldsCopy" >
+              <label class="col-md-3 control-label">{{fieldFilter.title}}</label>
+              <div class="col-md-8">
+                <input class="form-control" type="text" name="user" ng-model="fieldFilter.filter">
+              </div>
+            </div>
+          </div>
+          <!-- 高级过滤按钮 -->
+          <div>
+            <div class="form-group" style="margin-top: 10px;">
+              <div class="col-md-12">
+                <button class="btn btn-info pull-right apply_filter" type="button" ng-click="$ctrl.moreSearch();$ctrl.filters_view_is_active=false">{{$L('button.filter')}}</button>
+                <a class="reset_filter pull-right" ng-click="$ctrl.clearMoreSearch()">{{$L('button.filter.clear')}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <input class="bs_search common_text" style="width: 300px;"
+                 type="search"
+                 placeholder="{{$L('assets.code')}}"
+                 ng-model="$ctrl.search"
+                 ng-change="$ctrl.confuseQuery()"
+                 ng-enter="$ctrl.applyFilterWithTimeOut()"/>
+      </div>
+      <div class="item" >
+        &nbsp;&nbsp;
+        <button class="btn btn-info" ng-click="$ctrl.clearSearch()" ng-if="true">{{$L('button.reset')}}</button>
+      </div>
+      <div class="ctrl" >
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.fieldsAdd()" >{{$L('asset.data.selectcolumn')}}</button>
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.toOperSystem('SW-OS-001')" ng-if="false" >test</button>
+      </div>
+    </div>
+  <!-- 表格栏 -->
+  <div class="common-list">
+    <div id="asset-tablediv" style="overflow-x:auto;" ng-style="{{$ctrl.widthStyle}}">
+      <table border="1" class="asset-table" id="table-asset" style="width:600px" ng-show="$ctrl.data != null && $ctrl.data.length > 0">
+        <thead>
+          <tr>
+            <th style="background-color: white;border: none;width:30px  !important;height:60px  !important;"></th>
+            <!-- <th class="th-500"><img src="resources/image/intersect.png" width="100%" height="100%" style="margin-bottom: -10px;"></th> -->
+            <th class="th-500" ng-repeat="field in $ctrl.fields" title="{{field.desc == null ? field.title : field.desc}}"
+              ng-if="field.show != false" ng-style="$ctrl.toStyle(field.style, field.headerStyle)">
+              <div><img src="resources/image/asset_head.png" width="100%" height="100%" style="margin-bottom: -7px;" ng-if="$index == 0"></div>
+              {{ $index != 0 ? field.title : null}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in $ctrl.data">
+            <th style="background-color: white;border: none;width:30px  !important;text-align: start;">
+              <qz-checkbox id="selectOne_{{$ctrl.tableId}}_{{item.name}}" ng-checked="$ctrl.is_checked(item)" ng-click="$ctrl.toggle_selected(item)">
+              </qz-checkbox>
+            </th>
+            <td ng-repeat="field in $ctrl.fields"
+                template-data="item"
+                template-params="field.templateParams"
+                template-render-asset="field"
+                ng-click="$ctrl.openeditTable(field,item);$ctrl.toOperSystem(field,item)"
+                class="{{field.class}}"
+                ng-class="{assethighlight: $ctrl.isJump(field,item)}"
+                ng-style="$ctrl.toStyle(field.style, field.bodyStyle)"
+                ng-if="field.show != false">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 表格底部多选框及分页显示 -->
+    <table class="table-footer" ng-if="$ctrl.data != null && $ctrl.data.length > 0">
+      <tfoot>
+        <tr>
+           <td>
+              <spn class="selected_count" style="margin-top: 0px;margin-left: -13px;">
+                <qz-checkbox id="select_{{$ctrl.tableId}}" style="float:left" ng-checked="$ctrl.is_checked_all($ctrl.data) && $ctrl.data && $ctrl.data.length > 0"
+                                                 ng-show="$ctrl.dataone != 'true' && $ctrl.checkbox != 'disabled' && $ctrl.checkbox != 'notshow'&& $ctrl.checkbox !='showpage'"
+                                                 ng-click="$ctrl.toggle_checked_all($ctrl.data)">
+                        {{$L("table.select.all")}}
+                    </qz-checkbox>
+              </spn>
+              <span class="selected_count" style="margin-left:0px;magin-right:0px" >
+              {{$ctrl.selected_Selectcount()}}
+              /
+              {{$ctrl.data.total_elements}}
+              </span>
+              <a class="footer-button" ng-repeat="btn in $ctrl.buttons.footerButtons" style="margin-left:10px" ng-if="!btn.perpare || btn.perpare(item, $parent.$index)" ng-click="btn.onClick($ctrl)">
+                        {{btn.name}}
+                    </a>
+              <!-- <span class="selected_count" style="color: black">
+                                              批量编辑
+              </span>
+              <span class="selected_count" style="color: black">
+                                              导出全部
+              </span> -->
+              <div class="pagination" >
+                <button class="prev"
+                        type="button"
+                        ng-disabled="$ctrl.data.first"
+                        ng-click="$ctrl.upPage()">prev</button>
+                <input type="number" class="current" ng-model="$ctrl.current_page_mirror"
+                                                    ng-disabled="$ctrl.esType == 'true' && ($ctrl.data.total_elements >= 10000)"
+                                                    ng-enter="$ctrl.jumpTo()"/>
+                <span> / {{$ctrl.data.total_pages}}</span>
+                <button class="next"
+                        type="button"
+                        ng-disabled="$ctrl.data.last || ($ctrl.esType == 'true' && (($ctrl.data.current_page + 1) * $ctrl.numberOfPage >= 10000))"
+                        ng-click="$ctrl.downPage()">next</button>
+            </div>
+            <div class="pagination-conf" ng-if="$ctrl.numberOfPage" style="margin-right:10px">
+              <span>{{$L("table.page.size")}}</span>
+              <div class="dropup number-of-page">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{$ctrl.numberOfPage}}
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="item in [5, 8, 10, 20, 50, 100]">
+                      <a ng-click="$ctrl.pageSizeChange(item);">{{item}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <button class="table-refresh-div" ng-click="$ctrl.refresh({page: $ctrl.data.current_page});$ctrl.refreshBtnClick && $ctrl.refreshBtnClick();"></button>
+           </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div ng-show="$ctrl.data == null || $ctrl.data.length == 0" class="assetfont14">{{$L('common.nodata')}}</div>
+  </div>
+  <!-- 新增列模态窗 -->
+  <form name="columnForm" class="form-horizontal"  novalidate>
+    <qz-modal open-fn="$ctrl.openChooseColumnModal" close-fn="$ctrl.closeChooseColumnModal" show-size="middle" id="filter">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{$L('asset.data.selectcolumn')}}</h4>
+      </div>
+      <!-- 题头 -->
+      <div class="" style="padding-left: 25px;padding-right: 35px;">
+        <div class="form-group">
+          <span class="col-md-2 control-label" style="color: black;">#</span>
+          <span class="col-md-3 control-label" style="color: black;">{{$L('usergroup.attributes')}}</span>
+          <span class="col-md-4 control-label" style="color: black;">{{$L('common.desc')}}</span>
+          <span class="col-md-2 control-label" style="color: black;margin-left: -30px;">{{$L('common.oper')}}</span>
+        </div>
+        <hr style="border: 1px solid black;margin-top: -10px;" />
+      </div>
+      <!-- 内容 -->
+      <div class="modal-body" style="padding-left: 25px;padding-right: 35px;height: 500px;margin-top: -15px;">
+        <div class="form-group" ng-repeat="field in $ctrl.fieldsCopy">
+          <div class="col-md-12">
+            <span class="col-md-2 control-label" style="padding: 0px;">
+              <qz-checkbox id="select_{{$ctrl.tableId}}"  ng-click="" ng-true-value="true" ng-false-value="false"
+                 ng-model="field.show"> </qz-checkbox>
+            </span>
+            <span class="col-md-3 control-label" style="padding: 0px;" ng-if="field.edit"><a ng-click="$ctrl.editColumnFun(field)">{{field.title}}</a></span>
+            <span class="col-md-3 control-label" style="padding: 0px;" ng-if="!field.edit">{{field.title}}</span>
+            <span class="col-md-4 control-label" style="padding: 0px;">{{field.desc}}</span>
+            <span class="col-md-1 control-label" style="padding: 0px;">
+              <span class="glyphicon glyphicon-arrow-up" style="color: #3592b5;" ng-if="$index != 0" ng-click="$ctrl.upField(field,field.order)"></span>
+            </span>
+            <span class="col-md-1 control-span" style="padding: 0px;">
+              <span class="glyphicon glyphicon-arrow-down" style="color: #3592b5;" ng-if="($index + 1 ) != $ctrl.fieldsCopy.length" ng-click="$ctrl.downField(field,field.order)"></span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          <span class="col-md-2 ">
+            <button type="button" class="btn btn-info"  ng-click="$ctrl.addColumnFun();"  ng-show="true">{{$L('asset.data.newattr')}}</button>
+          </span>
+          <span class="col-md-8 "></span>
+          <span class="col-md-2">
+            <button type="button" class="btn btn-primary" ng-click="$ctrl.savaColumn();" >{{$L("button.ok")}}</button>
+          </span>
+        </div>
+      </div>
+    </qz-modal>
+  </form>
+  <!-- 新增属性模态窗 -->
+  <form name="addColumnForm" class="form-horizontal"  novalidate>
+    <qz-modal open-fn="$ctrl.openAddColumnModal" close-fn="$ctrl.closeAddColumnModal" show-size="middle" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{$L('asset.data.newattr')}}</h4>
+      </div>
+      <div class="modal-body" style="padding-left: 25px;padding-right: 35px;">
+        <div class="form-group">
+          <label class="col-md-2 control-label">{{$L('asset.data.attr')}}<sup>*</sup></label>
+          <div class="col-md-9 have-tip">
+            <input class="form-control" type="text"  ng-model="$ctrl.addColumn.title" name="colname" ng-required="true" maxlength="15"  id="colname"
+            ng-class="{'ng-touched': addColumnForm.$submitted}" focus>
+              <span ng-show="(addColumnForm.$submitted || addColumnForm.colname.$touched) && addColumnForm.colname.$invalid" class="error-block">
+                <span ng-show="addColumnForm.colname.$error.minlength || addColumnForm.colname.$error.maxlength">
+                               {{$L("common.maxlength",15)}}</span>
+                <span ng-show="addColumnForm.colname.$dirty && addColumnForm.colname.$error.pattern" >{{$L('common.invalidText')}}</span>
+                <span ng-show="addColumnForm.colname.$error.required">{{$L('common.required')}}</span>
+              </span>
+              <span class="help-tip" data-placement="auto right" data-trigger="hover"  with-tip>
+                {{$L('common.name.lengthtip')}}
+              </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">{{$L('common.desc')}}</label>
+          <div class="col-md-9 have-tip">
+            <!-- <input class="form-control" type="text"  ng-model="$ctrl.addColumn.desc" name="coldesc" ng-required="false"  id="coldesc"> -->
+            <textarea class="form-control" rows="5"  ng-model="$ctrl.addColumn.desc" name="coldesc" ng-required="false"
+                 id="coldesc" maxlength="100" style="resize:none"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addColumnToFildsList(addColumnForm);" >{{$L("button.ok")}}</button>
+      </div>
+    </qz-modal>
+  </form>
+
+  <!-- 表格编辑页面 -->
+  <form name="editTableForm" class="form-horizontal"  novalidate>
+    <qz-modal open-fn="$ctrl.openEditTableModal" close-fn="$ctrl.closeeEditTableModal" class="child-modal" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{$L('asset.data.editattr')}}</h4>
+      </div>
+      <div class="modal-body" style="padding-left: 25px;padding-right: 35px;">
+        <div class="form-group">
+          <label class="col-md-2 control-label">{{$L('asset.data.attr')}}</label>
+          <div class="col-md-9 have-tip">
+            <input class="form-control" type="text"  ng-model="$ctrl.editTable.value" name="colname" ng-required="true" maxlength="20"  id="colname"
+            ng-class="{'ng-touched': addColumnForm.$submitted}" focus>
+              <span ng-show="(addColumnForm.$submitted || addColumnForm.colname.$touched) && addColumnForm.colname.$invalid" class="error-block">
+                <span ng-show="addColumnForm.colname.$error.minlength || addColumnForm.colname.$error.maxlength">
+                               {{$L("common.maxlength",20)}}</span>
+                <span ng-show="addColumnForm.colname.$dirty && addColumnForm.colname.$error.pattern" >{{$L('common.invalidText')}}</span>
+                <span ng-show="addColumnForm.colname.$error.required">{{$L('common.required')}}</span>
+              </span>
+              <span class="help-tip" data-placement="auto right" data-trigger="hover"  with-tip>
+                {{$L("common.maxlength",20)}}
+              </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.saveEditTable(item);" >{{$L("button.ok")}}</button>
+      </div>
+    </qz-modal>
+  </form>
+
+  <!-- 批量编辑页面 -->
+  <form name="batchEditForm" class="form-horizontal"  novalidate>
+    <qz-modal open-fn="$ctrl.openBatchEditModal" close-fn="$ctrl.closeBatchEditModal"   show-size="middle" id="batchEditForm">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{$L('device.common.batchEdit')}}</h4>
+      </div>
+      <!-- 内容 -->
+      <div class="modal-body" style="padding-left: 25px;padding-right: 35px;height:500px;overflow-y: initial;">
+        <div class="form-group">
+          <span class="col-md-1 control-label" style="color: black;"></span>
+          <span class="col-md-3 control-label" style="color: black;">{{$L('asset.data.attrname')}}</span>
+          <span class="col-md-7 control-label" style="color: black;">{{$L('asset.data.value')}}</span>
+        </div>
+        <hr style="border: 1px solid black;margin-top: -10px;" />
+        <div class="form-group" ng-repeat="field in $ctrl.fieldsCopy" ng-if="field.edit">
+          <label class="col-md-1 control-label" ></label>
+          <label class="col-md-3 control-label" >{{field.title}}</label>
+          <div class="col-md-7 have-tip" >
+            <input class="form-control" type="text"  ng-model="field.value" name="colname" ng-required="false" maxlength="20"  id="colname"
+            ng-class="{'ng-touched': batchEditForm.$submitted}" focus>
+              <span ng-show="(batchEditForm.$submitted || batchEditForm.colname.$touched) && batchEditForm.colname.$invalid" class="error-block">
+                <span ng-show="batchEditForm.colname.$error.minlength || batchEditForm.colname.$error.maxlength">
+                               {{$L("common.maxlength",20)}}</span>
+                <span ng-show="batchEditForm.colname.$dirty && batchEditForm.colname.$error.pattern" >{{$L('common.invalidText')}}</span>
+                <span ng-show="batchEditForm.colname.$error.required">{{$L('common.required')}}</span>
+              </span>
+              <span class="help-tip" data-placement="auto left" data-trigger="hover"  with-tip>
+                {{$L("common.maxlength",20)}}
+              </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.saveBatchEdit();" >{{$L("button.ok")}}</button>
+      </div>
+    </qz-modal>
+  </form>
+  <form id="EditBatchResultForm" name="EditBatchResultForm" novalidate >
+    <qz-modal open-fn="$ctrl.openEditBatchResultModal" close-fn="$ctrl.closeEditBatchResultModal" class="modal-ms">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$ctrl.refresh({page: 0})">
+          <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">{{$L('device.common.batchEditDev.result')}}</h4>
+      </div>
+      <div class="modal-body" style="padding-left: 25px; padding-right: 35px;">
+        <div style="height: 30px;width: 100%;float:left">
+          <span class="common_text" style="padding-left: 5px;" ng-if="$ctrl.devResult.length !=  $ctrl.idLength" >{{$L('insp.extState')}}{{$L('device.batch.editing')}} <span ng-repeat="dot in $ctrl.showDots" class="common_text">.&nbsp;</span> </span>
+          <span class="common_text" style="padding-left: 5px;" ng-if="$ctrl.devResult.length ==  $ctrl.idLength">{{$L('insp.extState')}}{{$L('device.batch.hadEdit')}} </span>
+        </div>
+        <div class="scrollable-table" style="float:left;width:100%">
+          <table class="qz no-first-col">
+            <thead>
+              <tr>
+                <td style="width:50%" >{{$L('device.device.name')}}</td>
+                <td style="width:50%" >{{$L('device.common.batchDevices')}}</td>
+              </tr>
+            </thead>
+            <tbody>
+                <tr  ng-repeat="dev in $ctrl.batchResults">
+                    <td style="min-width: 100px;max-width: 150px;">
+                        <span style="white-space:normal;word-wrap: break-word">{{dev.code}}</span>
+                    </td>
+                    <td>
+                        <span ng-if="dev.result == 'success'" style="color:#00cfe2;text-align:center">{{$L('device.common.editSuccess')}}</span>
+                        <span ng-if="dev.result == 'fail'"  style="color:red;text-align:center">{{$L('device.common.editFail')}}</span>
+                    </td>
+                    <td ng-if="$ctrl.isSuccess == false ">
+                        <span style="white-space:normal;word-wrap: break-word">{{dev.reason}}</span>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="clearfix"></div>
+        <div class="editBatch" style="margin-top:20px">
+          <qz-progress class="import-progress" ng-show="$ctrl.idLength != 0"
+                value="{{$ctrl.batchResults.length /  $ctrl.idLength}}"></qz-progress>
+        </div>
+      </div>
+    </qz-modal>
+  </form>
+
+</div>
+</section>

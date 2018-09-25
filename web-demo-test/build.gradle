@@ -1,0 +1,77 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+version = '1.0.0'
+repositories {
+    mavenCentral url: 'http://repos.shterm.com/nexus/content/repositories/central/'
+}
+dependencies {
+    compile 'org.springframework:spring-context:4.+',
+            'org.springframework:spring-orm:4.+',
+            'org.springframework.data:spring-data-jpa:1.+',
+            'org.hibernate:hibernate-entitymanager:4.+',
+            'javax.servlet:javax.servlet-api:3.1+',
+            'org.springframework:spring-context:4.+',
+            'org.springframework:spring-webmvc:4.+',
+            'org.springframework.security:spring-security-config:4.+',
+            'org.springframework.security:spring-security-web:4.+',
+            'org.springframework.security:spring-security-ldap:4.+'
+
+
+    compile ('org.hibernate:hibernate-core:4.+') {
+        exclude group: 'xml-apis', module: 'xml-apis' // Java 7/8 already includes xml-apis
+    }
+
+    runtime 'org.apache.logging.log4j:log4j-core:2.+',
+            'org.apache.logging.log4j:log4j-jcl:2.+',
+            'org.apache.logging.log4j:log4j-slf4j-impl:2.+',
+            'org.liquibase:liquibase-core:3.+',
+            'com.h2database:h2:1.+',
+            'org.slf4j:slf4j-api:1.+',
+            'org.apache.taglibs:taglibs-standard-spec:1.+',
+            'org.apache.taglibs:taglibs-standard-impl:1.+',
+            'org.webjars:webjars-locator:0.+',
+            'org.webjars:jquery:2.+',
+            'org.webjars:bootstrap:3.+',
+            'org.webjars:dropzone:4.+'
+    testCompile 'junit:junit:4+',
+                'org.springframework:spring-test:4.+'
+
+    //providedCompile 'javax.servlet:javax.servlet-api:3.1+'
+
+}
+
+war {
+    archiveName 'jiji.war'
+}
+
+eclipse {
+    project {
+        natures 'org.eclipse.wst.jsdt.core.jsNature'
+    }
+    classpath {
+        defaultOutputDir = file('build/bin')
+        file {
+            whenMerged { classpath ->
+                def container;
+                classpath.entries.each {
+                    if (it.path == 'org.eclipse.jst.j2ee.internal.web.container') {
+                        container = it;
+                    }
+                }
+                if (container) {
+                    classpath.entries.remove(container);
+                }
+            }
+        }
+    }
+    wtp {
+        facet {
+            facet name: 'jst.java', version: '1.8'
+            facet name: 'jst.web', version: '3.1'
+            facet name: 'wst.jsdt.web', version: '1.0'
+        }
+        component {
+            contextPath = 'jiji'
+        }
+    }
+}

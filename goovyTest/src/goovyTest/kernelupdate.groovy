@@ -1,0 +1,329 @@
+output = '''- [fs] ext4: fix overwrite race condition (Jacob Tanenbaum) [1152607] {CVE-2014-8086}
+- [media] ttusb-dec: buffer overflow in ioctl (Alexander Gordeev) [1167116] {CVE-2014-8884}
+- [virt] kvm/vmx: invalid host cr4 handling across vm entries (Jacob Tanenbaum) [1153329] {CVE-2014-3690}
+- [fs] proc/task_mmu: fix missing check during hugepage migration (Jacob Tanenbaum) [1105040] {CVE-2014-3940}
+- [kernel] trace: insufficient syscall number validation in perf and ftrace subsystems (Jacob Tanenbaum) [1161570] {CVE-2014-7825 CVE-2014-7826}
+- [x86] traps: stop using IST for #SS (Petr  Matousek) [1172813] {CVE-2014-9322}
+- [net] sctp: fix NULL pointer dereference in af->from_addr_param on malformed packet (Daniel Borkmann) [1154002] {CVE-2014-7841}
+- [mm] shmem: fix splicing from a hole while it's punched (Denys Vlasenko) [1118245] {CVE-2014-4171}
+- [mm] shmem: fix faulting into a hole, not taking i_mutex (Denys Vlasenko) [1118245] {CVE-2014-4171}
+- [mm] shmem: fix faulting into a hole while it's punched (Denys Vlasenko) [1118245] {CVE-2014-4171}
+- [fs] isofs: unbound recursion when processing relocated directories (Jacob Tanenbaum) [1142271] {CVE-2014-5471 CVE-2014-5472}
+- [virt] kvm/vmx: handle invvpid vm exit gracefully (Petr  Matousek) [1144829] {CVE-2014-3646}
+- [virt] kvm: fix PIT timer race condition (Petr  Matousek) [1144880] {CVE-2014-3611}
+- [fs] cifs: NULL pointer dereference in SMB2_tcon (Jacob Tanenbaum) [1147529] {CVE-2014-7145}
+- [net] sctp: fix remote memory pressure from excessive queueing (Daniel Borkmann) [1152755] {CVE-2014-3688}
+- [net] sctp: fix panic on duplicate ASCONF chunks (Daniel Borkmann) [1152755] {CVE-2014-3687}
+- [net] sctp: fix skb_over_panic when receiving malformed ASCONF chunks (Daniel Borkmann) [1152755] {CVE-2014-3673}
+- [fs] udf: Avoid infinite loop when processing indirect ICBs (Jacob Tanenbaum) [1142322] {CVE-2014-6410}
+- [hid] fix off by one error in various _report_fixup routines (Jacob Tanenbaum) [1141394] {CVE-2014-3184}
+- [hid] logitech-dj: fix OOB array access (Jacob Tanenbaum) [1141212] {CVE-2014-3182}
+- [hid] picolcd: fix memory corruption via OOB write (Jacob Tanenbaum) [1141409] {CVE-2014-3186}
+- [usb] serial/whiteheat: fix memory corruption flaw (Jacob Tanenbaum) [1141404] {CVE-2014-3185}
+- [hid] fix OOB write in magicmouse driver (Jacob Tanenbaum) [1141177] {CVE-2014-3181}
+- [alsa] control: Make sure that id->index does not overflow (Jaroslav Kysela) [1112200 1117314] {CVE-2014-4656}
+- [alsa] control: Handle numid overflow (Jaroslav Kysela) [1112200 1117314] {CVE-2014-4656}
+- [alsa] control: Fix replacing user controls (Jaroslav Kysela) [1112200 1117324] {CVE-2014-4654 CVE-2014-4655}
+- [alsa] control: Protect user controls against concurrent access (Jaroslav Kysela) [1112200 1117339] {CVE-2014-4652}
+- [net] ceph: do not hard code max auth ticket len (Ilya Dryomov) [1142285] {CVE-2014-6416}
+- [net] ceph: add process_one_ticket() helper (Ilya Dryomov) [1142285] {CVE-2014-6416}
+- [net] ceph: gracefully handle large reply messages from the mon (Ilya Dryomov) [1142285] {CVE-2014-6416}
+- [media] media-device: fix an information leakage (Jacob Tanenbaum) [1109777] {CVE-2014-1739}
+- [fs] vfs: fix ref count leak in path_mountpoint() (Ian Kent) [1122376] {CVE-2014-5045}
+- [kernel] ptrace: get_dumpable() incorrect tests (Jacob Tanenbaum) [1111606] {CVE-2013-2929}
+- [target] rd: Refactor rd_build_device_space + rd_release_device_space (Denys Vlasenko) [1108755] {CVE-2014-4027}
+- [lib] assoc_array: Fix termination condition in assoc array garbage collection (David Howells) [1139431] {CVE-2014-3631}
+- [net] sctp: inherit auth_capable on INIT collisions (Daniel Borkmann) [1123763] {CVE-2014-5077}
+- [sound] alsa/control: Don't access controls outside of protected regions (Radomir Vrbovsky) [1117331] {CVE-2014-4653}
+- [net] l2tp: don't fall back on UDP [get|set]sockopt (Petr  Matousek) [1119466] {CVE-2014-4943}
+- [x86] ptrace: force IRET path after a ptrace_stop() (Oleg Nesterov) [1115935] {CVE-2014-4699}
+- [s390] ptrace: correct insufficient sanitization when setting psw mask (Hendrik Brueckner) [1113673] {CVE-2014-3534}
+- [kernel] auditsc: audit_krule mask accesses need bounds checking (Denys Vlasenko) [1102710] {CVE-2014-3917}
+- [net] sctp: Fix sk_ack_backlog wrap-around problem (Daniel Borkmann) [1112726] {CVE-2014-4667}
+- [net] Use netlink_ns_capable to verify the permisions of netlink messages (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] netlink: Add variants of capable for use on netlink messages (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] diag: Move the permission check in sock_diag_put_filterinfo to packet_diag_dump (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] netlink: Rename netlink_capable netlink_allowed (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] diag: Fix ns_capable check in sock_diag_put_filterinfo (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] netlink: Fix permission check in netlink_connect() (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] filter: prevent nla extensions to peek beyond the end of the message (Jiri Benc) [1096781] {CVE-2014-3144 CVE-2014-3145}
+- [net] mac80211: fix crash due to AP powersave TX vs. wakeup race (Jacob Tanenbaum) [1083534] {CVE-2014-2706}
+- [kernel] futex: Make lookup_pi_state more robust (Larry Woodman) [1104520] {CVE-2014-3153}
+- [kernel] futex: Always cleanup owner tid in unlock_pi (Larry Woodman) [1104520] {CVE-2014-3153}
+- [kernel] futex: Validate atomic acquisition in futex_lock_pi_atomic() (Larry Woodman) [1104520] {CVE-2014-3153}
+- [kernel] futex: prevent requeue pi on same futex (Larry Woodman) [1104520] {CVE-2014-3153}
+- [net] ipv4: current group_info should be put after using (Jiri Benc) [1087416] {CVE-2014-2851}
+- [net] core, nfqueue, openvswitch: Orphan frags in skb_zerocopy and handle errors (Jiri Pirko) [1079014] {CVE-2014-2568}
+- [fs] aio: fix plug memory disclosure and fix reqs_active accounting backport (Jeff Moyer) [1094605] {CVE-2014-0206}
+- [fs] aio: plug memory disclosure and fix reqs_active accounting (Mateusz Guzik) [1094605] {CVE-2014-0206}
+- [wireless] ath9k: tid->sched race in ath_tx_aggr_sleep() (Jacob Tanenbaum) [1083252] {CVE-2014-2672}
+- [powerpc] tm: Fix crash when forking inside a transaction (Radomir Vrbovsky) [1083215] {CVE-2014-2673}
+- [block] floppy: don't write kernel-only members to FDRAWCMD ioctl output (Denys Vlasenko) [1094318] {CVE-2014-1737 CVE-2014-1738}
+- [block] floppy: ignore kernel-only members in FDRAWCMD ioctl input (Denys Vlasenko) [1094318] {CVE-2014-1737 CVE-2014-1738}
+- [tty] n_tty: Fix n_tty_write crash when echoing in raw mode (Aristeu Rozanski) [1094242] {CVE-2014-0196}
+- [mm] rmap: try_to_unmap_cluster() should lock_page() before mlocking (Larry Woodman) [1078349] {CVE-2014-3122}
+- [virt] vhost/net: fix total length when packets are too short ("Michael S. Tsirkin") [1064446] {CVE-2014-0077}
+- [virt] vhost/net: validate vhost_get_vq_desc return value ("Michael S. Tsirkin") [1070940] {CVE-2014-0055}
+- [virt] kvm/ioapic: fix assignment of ioapic->rtc_status.pending_eoi (Paolo Bonzini) [1036478 1081590] {CVE-2014-0155}
+- [ipc] change kern_ipc_perm.deleted type to bool (Phillip Lougher) [1043807] {CVE-2013-7026}
+- [ipc] introduce ipc_valid_object() helper to sort out IPC_RMID races (Phillip Lougher) [1043807] {CVE-2013-7026}
+- [ipc] shm: fix shm_file deletion races (Phillip Lougher) [1043807] {CVE-2013-7026}
+- [x86] fpu: Clear exceptions in AMD FXSAVE workaround (Phillip Lougher) [1053596] {CVE-2014-1438}
+- [net] netfilter: nf_conntrack_dccp: fix skb_header_pointer API usages (Jiri Pirko) [1077351] {CVE-2014-2523}
+- [net] ipv6: don't set DST_NOCOUNT for remotely added routes (Jiri Pirko) [1075060] {CVE-2014-2309}
+- [net] skbuff: skb_segment: orphan frags before copying ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/fskb/list_skb/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/skb/head_skb/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/skb_frag/frag/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/frag/nskb_frag/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] use kfree_skb_list() helper ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [virt] kvm/x86: fix emulator buffer overflow (Andrew Jones) [1071836] {CVE-2014-0049}
+- [net] inet: fix for a race condition in the inet frag code (Nikolay Aleksandrov) [1070711] {CVE-2014-0100}
+- [security] keys: Make the keyring cycle detector ignore other keyrings of the same name (David Howells) [1071346] {CVE-2014-0102}
+- [net] sctp: fix sctp_sf_do_5_1D_ce to verify if we/peer is AUTH capable (Daniel Borkmann) [1070716] {CVE-2014-0101}
+- [fs] cifs: mask off top byte in get_rfc1002_length() (Sachin Prabhu) [1062588] {CVE-2014-0069}
+- [fs] cifs: sanity check length of data to send before sending (Sachin Prabhu) [1062588] {CVE-2014-0069}
+- [fs] cifs: ensure that uncached writes handle unmapped areas correctly (Sachin Prabhu) [1062588] {CVE-2014-0069}
+- [scsi] aacraid: prevent invalid pointer dereference (Frantisek Hrbata) [1034301] {CVE-2013-6380}
+- [wireless] libertas: potential oops in debugfs (Denys Vlasenko) [1034178] {CVE-2013-6378}
+- [wireless] ath9k: properly set MAC address and BSSID mask (Denys Vlasenko) [1033071] {CVE-2013-4579}
+- [fs] xfs: underflow bug in xfs_attrlist_by_handle() (Brian Foster) [1059843 1034667] {CVE-2013-6382}
+- [net] netfilter: nf_nat: fix access to uninitialized buffer in IRC NAT helper (Daniel Borkmann) [1058782] {CVE-2014-1690}
+- [net] add BUG_ON if kernel advertises msg_namelen > sizeof(struct sockaddr_storage) (Florian Westphal) [1039870] {CVE-2013-7266 CVE-2013-7267 CVE-2013-7268 CVE-2013-7269 CVE-2013-7270 CVE-2013-7271}
+- [net] rework recvmsg handler msg_name and msg_namelen logic (Florian Westphal) [1039870] {CVE-2013-7266 CVE-2013-7267 CVE-2013-7268 CVE-2013-7269 CVE-2013-7270 CVE-2013-7271}
+- [virt] kvm: fix guest-initiated crash with x2apic (Andrew Jones) [1042101] {CVE-2013-6376}
+- [virt] kvm: Convert vapic synchronization to _cached functions (Andrew Jones) [1042092] {CVE-2013-6368}
+- [virt] kvm: Fix potential divide by 0 in lapic (Andrew Jones) [1042084] {CVE-2013-6367}
+- [virt] kvm: Improve create VCPU parameter (Andrew Jones) [1042074] {CVE-2013-4587}
+- [net] ipv6: fix leaking uninitialized port number of offender sockaddr (Florian Westphal) [1035884] {CVE-2013-6405}
+- [net] inet: fix addr_len/msg->msg_namelen assignment in recv_error and rxpmtu functions (Florian Westphal) [1035884] {CVE-2013-6405}
+- [net] inet: prevent leakage of uninitialized memory to user in recv syscalls (Florian Westphal) [1035884] {CVE-2013-6405}
+- [kernel] perf/ftrace: Fix paranoid level for enabling function tracer (Jiri Olsa) [1027778] {CVE-2013-2930}
+- [net] flow_dissector: fail on evil iph->ihl (Jason Wang) [1007955] {CVE-2013-4348}
+- [net] ipv6: fix headroom calculation in udp6_ufo_fragment (Jiri Pirko) [1030016] {CVE-2013-4563}
+- [kernel] audit: call audit_bprm() only once to add AUDIT_EXECVE information (Richard Guy Briggs) [1010367]
+- [net] ipv6: udp packets following an UFO enqueued packet need also be handled by UFO (Jiri Pirko) [1011931] {CVE-2013-4387}
+- [hid] pantherlord: heap overflow flaw (Radomir Vrbovsky) [1000436] {CVE-2013-2892}
+- [hid] zeroplus: validate output report details (Frantisek Hrbata) [999907] {CVE-2013-2889}
+- [hid] provide a helper for validating hid reports (Frantisek Hrbata) [999907] {CVE-2013-2889}
+- [hid] validate HID report id size (Frantisek Hrbata) [1000454] {CVE-2013-2888}
+- [net] tuntap: correctly handle error in tun_set_iff() (Jiri Benc) [1007739] {CVE-2013-4343}
+- [net] sctp: fix ipv6 ipsec encryption bug in sctp_v6_xmit (Daniel Borkmann) [998398] {CVE-2013-4350}
+- [net] ipv6: ip6_append_data_mtu did not care about pmtudisc and frag_size (Francesco Fusco) [994346] {CVE-2013-4163}
+- [net] ipv6: call udp_push_pending_frames when uncorking a socket with AF_INET pending data (Francesco Fusco) [988355] {CVE-2013-4162}
+- [net] vhost-net: fix use-after-free in vhost_net_flush (Thomas Graf) [984723] {CVE-2013-4127}
+- [lib] keys: Fix ASN.1 indefinite length object parsing (David Howells) [1308814 1308815] {CVE-2016-0758}
+- [security] keys: Fix keyring ref leak in join_session_keyring() (David Howells) [1298931 1298036] {CVE-2016-0728}
+- [security] keys: Don't permit request_key() to construct a new keyring (David Howells) [1275929 1273465] {CVE-2015-7872}
+- [security] keys: Fix crash when attempt to garbage collect an uninstantiated keyring (David Howells) [1275929 1273465] {CVE-2015-7872}
+- [security] keys: Fix race between key destruction and finding a keyring by name (David Howells) [1275929 1273465] {CVE-2015-7872}
+- [x86] paravirt: Replace the paravirt nop with a bona fide empty function (Mateusz Guzik) [1259582 1259583] {CVE-2015-5157}
+- [x86] nmi: Fix a paravirt stack-clobbering bug in the NMI code (Mateusz Guzik) [1259582 1259583] {CVE-2015-5157}
+- [x86] nmi: Use DF to avoid userspace RSP confusing nested NMI detection (Mateusz Guzik) [1259582 1259583] {CVE-2015-5157}
+- [x86] nmi: Reorder nested NMI checks (Mateusz Guzik) [1259582 1259583] {CVE-2015-5157}
+- [x86] nmi: Improve nested NMI comments (Mateusz Guzik) [1259582 1259583] {CVE-2015-5157}
+- [x86] nmi: Switch stacks on userspace NMI entry (Mateusz Guzik) [1259582 1259583] {CVE-2015-5157}
+- [x86] kvm: svm: unconditionally intercept #DB (Paolo Bonzini) [1279469 1279470] {CVE-2015-8104}
+- [x86] virt: guest to host DoS by triggering an infinite loop in microcode (Paolo Bonzini) [1277560 1277561] {CVE-2015-5307}
+- [kernel] Initialize msg/shm IPC objects before doing ipc_addid() (Lennert Buytenhek) [1271507] {CVE-2015-7613}
+- [fs] vfs: Test for and handle paths that are unreachable from their mnt_root ("Eric W. Biederman") [1209371] {CVE-2015-2925}
+- [fs] dcache: Handle escaped paths in prepend_path ("Eric W. Biederman") [1209371] {CVE-2015-2925}
+- [net] sctp: fix race on protocol/netns initialization (Marcelo Leitner) [1251807] {CVE-2015-5283}
+- [netdrv] virtio-net: drop NETIF_F_FRAGLIST (Jason Wang) [1247840] {CVE-2015-5156}
+- [fs] dcache: d_walk() might skip too much (Denys Vlasenko) [1173813] {CVE-2014-8559}
+- [fs] dcache: deal with deadlock in d_walk() (Denys Vlasenko) [1173813] {CVE-2014-8559}
+- [fs] dcache: move d_rcu from overlapping d_child to overlapping d_alias (Denys Vlasenko) [1173813] {CVE-2014-8559}
+- [fs] dcache: fold try_to_ascend() into the sole remaining caller (Denys Vlasenko) [1173813] {CVE-2014-8559}
+- [security] keys: Ensure we free the assoc array edit if edit is valid (David Howells) [1244171] {CVE-2015-1333}
+- [net] udp: fix behavior of wrong checksums (Denys Vlasenko) [1240761] {CVE-2015-5364 CVE-2015-5366}
+- [x86] bpf_jit: fix compilation of large bpf programs (Denys Vlasenko) [1236939] {CVE-2015-4700}
+- [x86] ASLR bruteforce possible for vdso library (Jacob Tanenbaum) [1184899] {CVE-2014-9585}
+- [fs] ext4: allocate entire range in zero range (Lukas Czerner) [1187071] {CVE-2015-0275}
+- [net] sctp: fix ASCONF list handling (Marcelo Leitner) [1206474] {CVE-2015-3212}
+- [kernel] userns: Correct the comment in map_write ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Allow setting gid_maps without privilege when setgroups is disabled ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: fix KABI broken by introduction of struct user_namespace.flags ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Add a knob to disable setgroups on a per user namespace basis ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Rename id_map_mutex to userns_state_mutex ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Only allow the creator of the userns unprivileged mappings ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Check euid no fsuid when establishing an unprivileged uid mapping ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Don't allow unprivileged creation of gid mappings ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Don't allow setgroups until a gid mapping has been established ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] userns: Document what the invariant required for safe unprivileged mappings ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [kernel] groups: Consolidate the setgroups permission checks ("Eric W. Biederman") [1138782 1170689] {CVE-2014-8989}
+- [fs] userns: Change inode_capable to capable_wrt_inode_uidgid ("Eric W. Biederman") [1109837 1138782] {CVE-2014-4014}
+- [x86] kernel: Load TLS descriptors before switching DS and ES (Adrian Reber) [1223330] {CVE-2014-9419}
+- [fs] pipe: fix pipe corruption and iovec overrun on partial copy (Seth Jennings) [1198843] {CVE-2015-1805}
+- [net] ipv4: Missing sk_nulls_node_init() in ping_unhash() (Denys Vlasenko) [1218105] {CVE-2015-3636}
+- [net] ipv6: Don't reduce hop limit for an interface (Denys Vlasenko) [1208496] {CVE-2015-2922}
+- [fs] exec: take i_mutex during prepare_binprm for set[ug]id executables (Mateusz Guzik) [1216270] {CVE-2015-3339}
+- [kernel] locking: Remove atomicy checks from {READ, WRITE}_ONCE (Mateusz Guzik) [1216270] {CVE-2015-3339}
+- [kernel] make READ_ONCE() valid on const arguments (Mateusz Guzik) [1216270] {CVE-2015-3339}
+- [kernel] Change ASSIGN_ONCE(val, x) to WRITE_ONCE(x, val) (Mateusz Guzik) [1216270] {CVE-2015-3339}
+- [kernel] Provide READ_ONCE and ASSIGN_ONCE (Mateusz Guzik) [1216270] {CVE-2015-3339}
+- [kvm] x86: Fix of previously incomplete fix for CVE-2014-8480 (Bandan Das) [1209995]
+- [kvm] x86: em_ret_far overrides cpl (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Fix far-jump to non-canonical check (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Handle errors when RIP is set during far jumps (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Emulator fixes for eip canonical checks on near branches (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Fix wrong masking on relative jump/call (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Don't report guest userspace emulation error to userspace (Bandan Das) [1163766 1209995] {CVE-2010-5313 CVE-2014-7842}
+- [kvm] iommu: fix the third parameter of kvm_iommu_put_pages (CVE-2014-3601) (Bandan Das) [1209995]
+- [kvm] x86: Inter-privilege level ret emulation is not implemeneted (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Loading segments on 64-bit mode may be wrong (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [kvm] x86: Emulator ignores LDTR/TR extended base on LLDT/LTR (Bandan Das) [1152997 1209995] {CVE-2014-3647}
+- [x86] kernel: execution in the early microcode loader (Jacob Tanenbaum) [1206830] {CVE-2015-2666}
+- [x86] kernel: Remove a bogus 'ret_from_fork' optimization (Mateusz Guzik) [1209235] {CVE-2015-2830}
+- [x86] mm: Linux stack ASLR implementation (Jacob Tanenbaum) [1195685] {CVE-2015-1593}
+- [security] keys: memory corruption or panic during key garbage collection (Jacob Tanenbaum) [1179852] {CVE-2014-9529}
+- [mm] memcg: use proper memcg in limit bypass (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [mm] memcg: do not allow task about to OOM kill to bypass the limit (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [mm] memcg: do not declare OOM from __GFP_NOFAIL allocations (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [fs] buffer: move allocation failure loop into the allocator (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [mm] memcg: handle non-error OOM situations more gracefully (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [mm] memcg: do not trap chargers with full callstack on OOM (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [mm] memcg: rework and document OOM waiting and wakeup (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [mm] memcg: enable memcg OOM killer only for user faults (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [x86] finish user fault error path with fatal signal (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [arch] mm: pass userspace fault flag to generic fault handler (Johannes Weiner) [1213903] {CVE-2014-8171}
+- [fs] isofs: Fix unchecked printing of ER records (Mateusz Guzik) [1180483] {CVE-2014-9584}
+- [fs] isofs: infinite loop in CE record entries (Jacob Tanenbaum) [1175248] {CVE-2014-9420}
+- [x86] crypto: aesni - fix memory usage in GCM decryption (Kurt Stutsman) [1212178] {CVE-2015-3331}
+- [net] netfilter: nf_tables: fix flush ruleset chain dependencies (Jiri Pirko) [1192881] {CVE-2015-1573}
+- [net] nf_conntrack: reserve two bytes for nf_ct_ext->len (Marcelo Leitner) [1206164] {CVE-2014-9715}
+- [x86] kvm: insufficient sysenter emulation when invoked from 16-bit code (Jacob Tanenbaum) [1186452] {CVE-2015-0239}
+- [crypto] add missing crypto module aliases (Denys Vlasenko) [1190631] {CVE-2013-7421 CVE-2014-9644}
+- [crypto] include crypto- module prefix in template (Denys Vlasenko) [1190631] {CVE-2013-7421 CVE-2014-9644}
+- [crypto] prefix module autoloading with "crypto-" (Denys Vlasenko) [1190631] {CVE-2013-7421 CVE-2014-9644}
+- [x86] kvm: Prevent guest from writing non-canonical shared MSR addresses (Petr  Matousek) [1144885] {CVE-2014-3610}
+- [x86] kvm: Check non-canonical addresses upon WRMSR (Petr  Matousek) [1144885] {CVE-2014-3610}
+- [infiniband] core: Prevent integer overflow in ib_umem_get address arithmetic (Doug Ledford) [1179347] {CVE-2014-8159}
+- [net] sctp: fix slab corruption from use after free on INIT collisions (Daniel Borkmann) [1183959] {CVE-2015-1421}
+- [fs] ext4: fix overwrite race condition (Jacob Tanenbaum) [1152607] {CVE-2014-8086}
+- [media] ttusb-dec: buffer overflow in ioctl (Alexander Gordeev) [1167116] {CVE-2014-8884}
+- [virt] kvm/vmx: invalid host cr4 handling across vm entries (Jacob Tanenbaum) [1153329] {CVE-2014-3690}
+- [fs] proc/task_mmu: fix missing check during hugepage migration (Jacob Tanenbaum) [1105040] {CVE-2014-3940}
+- [kernel] trace: insufficient syscall number validation in perf and ftrace subsystems (Jacob Tanenbaum) [1161570] {CVE-2014-7825 CVE-2014-7826}
+- [x86] traps: stop using IST for #SS (Petr  Matousek) [1172813] {CVE-2014-9322}
+- [net] sctp: fix NULL pointer dereference in af->from_addr_param on malformed packet (Daniel Borkmann) [1154002] {CVE-2014-7841}
+- [mm] shmem: fix splicing from a hole while it's punched (Denys Vlasenko) [1118245] {CVE-2014-4171}
+- [mm] shmem: fix faulting into a hole, not taking i_mutex (Denys Vlasenko) [1118245] {CVE-2014-4171}
+- [mm] shmem: fix faulting into a hole while it's punched (Denys Vlasenko) [1118245] {CVE-2014-4171}
+- [fs] isofs: unbound recursion when processing relocated directories (Jacob Tanenbaum) [1142271] {CVE-2014-5471 CVE-2014-5472}
+- [virt] kvm/vmx: handle invvpid vm exit gracefully (Petr  Matousek) [1144829] {CVE-2014-3646}
+- [virt] kvm: fix PIT timer race condition (Petr  Matousek) [1144880] {CVE-2014-3611}
+- [fs] cifs: NULL pointer dereference in SMB2_tcon (Jacob Tanenbaum) [1147529] {CVE-2014-7145}
+- [net] sctp: fix remote memory pressure from excessive queueing (Daniel Borkmann) [1152755] {CVE-2014-3688}
+- [net] sctp: fix panic on duplicate ASCONF chunks (Daniel Borkmann) [1152755] {CVE-2014-3687}
+- [net] sctp: fix skb_over_panic when receiving malformed ASCONF chunks (Daniel Borkmann) [1152755] {CVE-2014-3673}
+- [fs] udf: Avoid infinite loop when processing indirect ICBs (Jacob Tanenbaum) [1142322] {CVE-2014-6410}
+- [hid] fix off by one error in various _report_fixup routines (Jacob Tanenbaum) [1141394] {CVE-2014-3184}
+- [hid] logitech-dj: fix OOB array access (Jacob Tanenbaum) [1141212] {CVE-2014-3182}
+- [hid] picolcd: fix memory corruption via OOB write (Jacob Tanenbaum) [1141409] {CVE-2014-3186}
+- [usb] serial/whiteheat: fix memory corruption flaw (Jacob Tanenbaum) [1141404] {CVE-2014-3185}
+- [hid] fix OOB write in magicmouse driver (Jacob Tanenbaum) [1141177] {CVE-2014-3181}
+- [alsa] control: Make sure that id->index does not overflow (Jaroslav Kysela) [1112200 1117314] {CVE-2014-4656}
+- [alsa] control: Handle numid overflow (Jaroslav Kysela) [1112200 1117314] {CVE-2014-4656}
+- [alsa] control: Fix replacing user controls (Jaroslav Kysela) [1112200 1117324] {CVE-2014-4654 CVE-2014-4655}
+- [alsa] control: Protect user controls against concurrent access (Jaroslav Kysela) [1112200 1117339] {CVE-2014-4652}
+- [net] ceph: do not hard code max auth ticket len (Ilya Dryomov) [1142285] {CVE-2014-6416}
+- [net] ceph: add process_one_ticket() helper (Ilya Dryomov) [1142285] {CVE-2014-6416}
+- [net] ceph: gracefully handle large reply messages from the mon (Ilya Dryomov) [1142285] {CVE-2014-6416}
+- [media] media-device: fix an information leakage (Jacob Tanenbaum) [1109777] {CVE-2014-1739}
+- [fs] vfs: fix ref count leak in path_mountpoint() (Ian Kent) [1122376] {CVE-2014-5045}
+- [kernel] ptrace: get_dumpable() incorrect tests (Jacob Tanenbaum) [1111606] {CVE-2013-2929}
+- [target] rd: Refactor rd_build_device_space + rd_release_device_space (Denys Vlasenko) [1108755] {CVE-2014-4027}
+- [lib] assoc_array: Fix termination condition in assoc array garbage collection (David Howells) [1139431] {CVE-2014-3631}
+- [net] sctp: inherit auth_capable on INIT collisions (Daniel Borkmann) [1123763] {CVE-2014-5077}
+- [sound] alsa/control: Don't access controls outside of protected regions (Radomir Vrbovsky) [1117331] {CVE-2014-4653}
+- [net] l2tp: don't fall back on UDP [get|set]sockopt (Petr  Matousek) [1119466] {CVE-2014-4943}
+- [x86] ptrace: force IRET path after a ptrace_stop() (Oleg Nesterov) [1115935] {CVE-2014-4699}
+- [s390] ptrace: correct insufficient sanitization when setting psw mask (Hendrik Brueckner) [1113673] {CVE-2014-3534}
+- [kernel] auditsc: audit_krule mask accesses need bounds checking (Denys Vlasenko) [1102710] {CVE-2014-3917}
+- [net] sctp: Fix sk_ack_backlog wrap-around problem (Daniel Borkmann) [1112726] {CVE-2014-4667}
+- [net] Use netlink_ns_capable to verify the permisions of netlink messages (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] netlink: Add variants of capable for use on netlink messages (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] diag: Move the permission check in sock_diag_put_filterinfo to packet_diag_dump (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] netlink: Rename netlink_capable netlink_allowed (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] diag: Fix ns_capable check in sock_diag_put_filterinfo (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] netlink: Fix permission check in netlink_connect() (Jiri Benc) [1094272] {CVE-2014-0181}
+- [net] filter: prevent nla extensions to peek beyond the end of the message (Jiri Benc) [1096781] {CVE-2014-3144 CVE-2014-3145}
+- [net] mac80211: fix crash due to AP powersave TX vs. wakeup race (Jacob Tanenbaum) [1083534] {CVE-2014-2706}
+- [kernel] futex: Make lookup_pi_state more robust (Larry Woodman) [1104520] {CVE-2014-3153}
+- [kernel] futex: Always cleanup owner tid in unlock_pi (Larry Woodman) [1104520] {CVE-2014-3153}
+- [kernel] futex: Validate atomic acquisition in futex_lock_pi_atomic() (Larry Woodman) [1104520] {CVE-2014-3153}
+- [kernel] futex: prevent requeue pi on same futex (Larry Woodman) [1104520] {CVE-2014-3153}
+- [net] ipv4: current group_info should be put after using (Jiri Benc) [1087416] {CVE-2014-2851}
+- [net] core, nfqueue, openvswitch: Orphan frags in skb_zerocopy and handle errors (Jiri Pirko) [1079014] {CVE-2014-2568}
+- [fs] aio: fix plug memory disclosure and fix reqs_active accounting backport (Jeff Moyer) [1094605] {CVE-2014-0206}
+- [fs] aio: plug memory disclosure and fix reqs_active accounting (Mateusz Guzik) [1094605] {CVE-2014-0206}
+- [wireless] ath9k: tid->sched race in ath_tx_aggr_sleep() (Jacob Tanenbaum) [1083252] {CVE-2014-2672}
+- [powerpc] tm: Fix crash when forking inside a transaction (Radomir Vrbovsky) [1083215] {CVE-2014-2673}
+- [block] floppy: don't write kernel-only members to FDRAWCMD ioctl output (Denys Vlasenko) [1094318] {CVE-2014-1737 CVE-2014-1738}
+- [block] floppy: ignore kernel-only members in FDRAWCMD ioctl input (Denys Vlasenko) [1094318] {CVE-2014-1737 CVE-2014-1738}
+- [tty] n_tty: Fix n_tty_write crash when echoing in raw mode (Aristeu Rozanski) [1094242] {CVE-2014-0196}
+- [mm] rmap: try_to_unmap_cluster() should lock_page() before mlocking (Larry Woodman) [1078349] {CVE-2014-3122}
+- [virt] vhost/net: fix total length when packets are too short ("Michael S. Tsirkin") [1064446] {CVE-2014-0077}
+- [virt] vhost/net: validate vhost_get_vq_desc return value ("Michael S. Tsirkin") [1070940] {CVE-2014-0055}
+- [virt] kvm/ioapic: fix assignment of ioapic->rtc_status.pending_eoi (Paolo Bonzini) [1036478 1081590] {CVE-2014-0155}
+- [ipc] change kern_ipc_perm.deleted type to bool (Phillip Lougher) [1043807] {CVE-2013-7026}
+- [ipc] introduce ipc_valid_object() helper to sort out IPC_RMID races (Phillip Lougher) [1043807] {CVE-2013-7026}
+- [ipc] shm: fix shm_file deletion races (Phillip Lougher) [1043807] {CVE-2013-7026}
+- [x86] fpu: Clear exceptions in AMD FXSAVE workaround (Phillip Lougher) [1053596] {CVE-2014-1438}
+- [net] netfilter: nf_conntrack_dccp: fix skb_header_pointer API usages (Jiri Pirko) [1077351] {CVE-2014-2523}
+- [net] ipv6: don't set DST_NOCOUNT for remotely added routes (Jiri Pirko) [1075060] {CVE-2014-2309}
+- [net] skbuff: skb_segment: orphan frags before copying ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/fskb/list_skb/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/skb/head_skb/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/skb_frag/frag/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] skbuff: skb_segment: s/frag/nskb_frag/ ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [net] use kfree_skb_list() helper ("Michael S. Tsirkin") [1056934] {CVE-2014-0131}
+- [virt] kvm/x86: fix emulator buffer overflow (Andrew Jones) [1071836] {CVE-2014-0049}
+- [net] inet: fix for a race condition in the inet frag code (Nikolay Aleksandrov) [1070711] {CVE-2014-0100}
+- [security] keys: Make the keyring cycle detector ignore other keyrings of the same name (David Howells) [1071346] {CVE-2014-0102}
+- [net] sctp: fix sctp_sf_do_5_1D_ce to verify if we/peer is AUTH capable (Daniel Borkmann) [1070716] {CVE-2014-0101}
+- [fs] cifs: mask off top byte in get_rfc1002_length() (Sachin Prabhu) [1062588] {CVE-2014-0069}
+- [fs] cifs: sanity check length of data to send before sending (Sachin Prabhu) [1062588] {CVE-2014-0069}
+- [fs] cifs: ensure that uncached writes handle unmapped areas correctly (Sachin Prabhu) [1062588] {CVE-2014-0069}
+- [scsi] aacraid: prevent invalid pointer dereference (Frantisek Hrbata) [1034301] {CVE-2013-6380}
+- [wireless] libertas: potential oops in debugfs (Denys Vlasenko) [1034178] {CVE-2013-6378}
+- [wireless] ath9k: properly set MAC address and BSSID mask (Denys Vlasenko) [1033071] {CVE-2013-4579}
+- [fs] xfs: underflow bug in xfs_attrlist_by_handle() (Brian Foster) [1059843 1034667] {CVE-2013-6382}
+- [net] netfilter: nf_nat: fix access to uninitialized buffer in IRC NAT helper (Daniel Borkmann) [1058782] {CVE-2014-1690}
+- [net] add BUG_ON if kernel advertises msg_namelen > sizeof(struct sockaddr_storage) (Florian Westphal) [1039870] {CVE-2013-7266 CVE-2013-7267 CVE-2013-7268 CVE-2013-7269 CVE-2013-7270 CVE-2013-7271}
+- [net] rework recvmsg handler msg_name and msg_namelen logic (Florian Westphal) [1039870] {CVE-2013-7266 CVE-2013-7267 CVE-2013-7268 CVE-2013-7269 CVE-2013-7270 CVE-2013-7271}
+- [virt] kvm: fix guest-initiated crash with x2apic (Andrew Jones) [1042101] {CVE-2013-6376}
+- [virt] kvm: Convert vapic synchronization to _cached functions (Andrew Jones) [1042092] {CVE-2013-6368}
+- [virt] kvm: Fix potential divide by 0 in lapic (Andrew Jones) [1042084] {CVE-2013-6367}
+- [virt] kvm: Improve create VCPU parameter (Andrew Jones) [1042074] {CVE-2013-4587}
+- [net] ipv6: fix leaking uninitialized port number of offender sockaddr (Florian Westphal) [1035884] {CVE-2013-6405}
+- [net] inet: fix addr_len/msg->msg_namelen assignment in recv_error and rxpmtu functions (Florian Westphal) [1035884] {CVE-2013-6405}
+- [net] inet: prevent leakage of uninitialized memory to user in recv syscalls (Florian Westphal) [1035884] {CVE-2013-6405}
+- [kernel] perf/ftrace: Fix paranoid level for enabling function tracer (Jiri Olsa) [1027778] {CVE-2013-2930}
+- [net] flow_dissector: fail on evil iph->ihl (Jason Wang) [1007955] {CVE-2013-4348}
+- [net] ipv6: fix headroom calculation in udp6_ufo_fragment (Jiri Pirko) [1030016] {CVE-2013-4563}
+- [kernel] audit: call audit_bprm() only once to add AUDIT_EXECVE information (Richard Guy Briggs) [1010367]
+- [net] ipv6: udp packets following an UFO enqueued packet need also be handled by UFO (Jiri Pirko) [1011931] {CVE-2013-4387}
+- [hid] pantherlord: heap overflow flaw (Radomir Vrbovsky) [1000436] {CVE-2013-2892}
+- [hid] zeroplus: validate output report details (Frantisek Hrbata) [999907] {CVE-2013-2889}
+- [hid] provide a helper for validating hid reports (Frantisek Hrbata) [999907] {CVE-2013-2889}
+- [hid] validate HID report id size (Frantisek Hrbata) [1000454] {CVE-2013-2888}
+- [net] tuntap: correctly handle error in tun_set_iff() (Jiri Benc) [1007739] {CVE-2013-4343}
+- [net] sctp: fix ipv6 ipsec encryption bug in sctp_v6_xmit (Daniel Borkmann) [998398] {CVE-2013-4350}
+- [net] ipv6: ip6_append_data_mtu did not care about pmtudisc and frag_size (Francesco Fusco) [994346] {CVE-2013-4163}
+- [net] ipv6: call udp_push_pending_frames when uncorking a socket with AF_INET pending data (Francesco Fusco) [988355] {CVE-2013-4162}
+- [net] vhost-net: fix use-after-free in vhost_net_flush (Thomas Graf) [984723] {CVE-2013-4127}'''
+
+rtnList = [];
+if (output == null || output.trim() == "") {
+    return null;
+}
+String [] lines = output.split("\\R");
+if (lines.length == 0) {
+  return null;
+}
+for (String str : lines) {
+    rtnList.add(str);
+}
+println(rtnList)
+return rtnList;
